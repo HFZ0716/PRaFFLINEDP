@@ -98,10 +98,10 @@ all_releases = {
 all_projs = list(all_train_releases.keys())
 
 file_lvl_gt = 'Baseline-result/datasets/preprocessed_data/'
-# # 获取绝对路径
+
 # absolute_path = os.path.abspath(file_lvl_gt)
 #
-# # 打印绝对路径
+
 # print(absolute_path)
 
 word2vec_dir = 'Baseline-result/DeepLineDP/output/Word2vec_model'
@@ -157,14 +157,6 @@ def prepare_code2d(code_list, to_lowercase = False):
     return code2d 
     
 def get_code3d_and_label(df, to_lowercase = False):
-    '''
-        input
-            df (DataFrame): a dataframe from get_df()
-        output
-            #嵌套列表
-            code3d (nested list): a list of code2d from prepare_code2d()
-            all_file_label (list): a list of file-level label
-    '''
 
     code3d = []
     all_file_label = []
@@ -185,9 +177,7 @@ def get_code3d_and_label(df, to_lowercase = False):
 def get_w2v_weight_for_deep_learning_models(word2vec_model, embed_dim):
 
     word2vec_weights = torch.FloatTensor(word2vec_model.wv.vectors).cuda()
-    
-    # add zero vector for unknown tokens
-    # concatnate
+
     word2vec_weights = torch.cat((word2vec_weights, torch.zeros(1,embed_dim).cuda()))
 
     return word2vec_weights
@@ -217,7 +207,6 @@ def pad_code(code_list_3d,max_sent_len,limit_sent_len=True, mode='train'):
 
 def get_dataloader(code_vec, label_list,batch_size, max_sent_len):
     y_tensor = torch.tensor([label for label in label_list], dtype=torch.float32, device='cuda')
-    # y_tensor =  torch.cuda.FloatTensor([label for label in label_list])
     code_vec_pad = pad_code(code_vec,max_sent_len) 
     tensor_dataset = TensorDataset(torch.tensor(code_vec_pad), y_tensor)
     dl = DataLoader(tensor_dataset,shuffle=True,batch_size=batch_size,drop_last=True)

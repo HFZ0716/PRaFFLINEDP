@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 from DeepLineDP_model import *
 from my_util import *
-#解决RuntimeError: cuDNN error: CUDNN_STATUS_NOT_SUPPORTED. This error may appear if you passed in a non-contiguous input.问题
+
 torch.backends.cudnn.enabled = False
 torch.manual_seed(0)
 
@@ -124,7 +124,7 @@ def predict_defective_files_in_releases(dataset_name, target_epochs):
             codevec = get_x_vec(code3d, word2vec)
 
             save_file_path = actual_intermediate_output_dir+filename.replace('/','_').replace('.java','')+'_'+target_epochs+'_epochs.pkl'
-            #如果路径不存在，需要执行预测
+
             if not os.path.exists(save_file_path):
                 with torch.no_grad():
                     # codevec_padded_tensor = torch.tensor(codevec)##################################!######################
@@ -147,7 +147,7 @@ def predict_defective_files_in_releases(dataset_name, target_epochs):
                         'line-number': line_number
                     }
                     absolute_save_file_path = os.path.abspath(save_file_path)
-                    # 打印绝对路径
+
                     print("absolute"+absolute_save_file_path)
                     directory = os.path.dirname(save_file_path)
                     try:
@@ -159,7 +159,6 @@ def predict_defective_files_in_releases(dataset_name, target_epochs):
                         print(f"File saved successfully at: {absolute_save_file_path}")
                     except Exception as e:
                         print(f"Error saving file: {e}")
-            #路径存在，直接从文件中加载预测结果
             else:
                 output_dict = pickle.load(open(save_file_path, 'rb'))
                 file_prob = output_dict['prob']

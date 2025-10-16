@@ -12,7 +12,7 @@ from ..utils.config import PROJECT_RELEASE_LIST
 
 simplefilter(action='ignore', category=FutureWarning)
 
-root_path = r'D:/github_code/SPLICE-master/Baseline-result/'
+root_path = r'D:/Baseline-result/'
 dataset_string = 'datasets'
 result_string = 'result_newData'
 

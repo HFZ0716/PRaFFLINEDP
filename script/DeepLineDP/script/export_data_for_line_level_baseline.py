@@ -5,8 +5,8 @@ from tqdm import tqdm
 
 from my_util import *
 
-base_data_dir = '../../../Baseline-result/datasets/preprocessed_data（未去噪声）/'
-base_original_data_dir = '../../../Baseline-result/datasets/original_newData（未去噪声）/File-level/'
+base_data_dir = '../../../Baseline-result/datasets/preprocessed_data/'
+base_original_data_dir = '../../../Baseline-result/datasets/original_newData/File-level/'
 
 data_for_ngram_dir = r"D:/N_gram/"
 data_for_error_prone_dir = r"D:/PMD/"

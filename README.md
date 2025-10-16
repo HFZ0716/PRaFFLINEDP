@@ -1,4 +1,4 @@
 # PRaFFLINEDP
-基于递进式分段排序的句法表层特征和深层结构特征的CLDP方法
+Feature Fusion with Prioritization for Efficient Line-Level Defect Prediction
 
-论文录用之后将更新全部代码和详细说明
+Full code and comprehensive documentation will be released upon acceptance of the paper.
